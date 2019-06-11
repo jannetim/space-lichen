@@ -1,12 +1,15 @@
 import React from 'react';
 import logo from './logo.svg';
-import MapTest from './components/MapTest'
 import './App.css';
+
+import MapTest from './components/MapTest'
+import Sidebar from './components/Sidebar';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App" style={{ display: 'flex' }} >
       <MapTest height='100vh' width='75vw' />
+      <Sidebar height='100vh' width='25vw' />
     </div>
   );
 }

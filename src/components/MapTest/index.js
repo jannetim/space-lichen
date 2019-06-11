@@ -2,6 +2,7 @@ import React from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
 
 const position = [51.505, -0.09]
+
 const TestMap = ({ height, width }) => {
   const onMapClick = (e) => console.log("latlng", e.latlng)
   return (
