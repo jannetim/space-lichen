@@ -6,7 +6,7 @@ import './App.css';
 function App() {
   return (
     <div className="App">
-      <MapTest />
+      <MapTest height='100vh' width='75vw' />
     </div>
   );
 }
