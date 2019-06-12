@@ -7,6 +7,7 @@ const Sidebar = ({
   data1,
   data2,
   data3,
+  area
 }) => {
   const [slice, setSlice] = useState([0, 30])
   return (

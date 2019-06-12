@@ -7,8 +7,8 @@ const position = [67.413, 26.5950]
 
 const TestMap = ({ height, width, pickArea }) => {
   const onMapClick = (e) => console.log("latlng", e.latlng)
-  sodCosmic()
-  fetch()
+  //sodCosmic()
+  //fetch()
   console.log(pickArea)
   return (
       <Map center={position} style={{ height, width }} zoom={13} onClick={(e) => onMapClick(e)}>
