@@ -12,11 +12,12 @@ function App() {
     console.log('Chosen area', area)
   })
   return (
-    <div className="App" style={{ display: 'flex' }} chosenArea >
+    <div className="App" style={{ display: 'flex' }}>
       <MapTest height='100vh' width='75vw' pickArea={area => setArea(area)} />
       <Sidebar
         height='100vh'
         width='25vw'
+        area
       />
     </div>
   );
