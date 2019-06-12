@@ -1,4 +1,4 @@
-import React from 'react'
+/*import React from 'react'
 import parser from 'fast-xml-parser'
 import he from 'he'
 import axios from 'axios'
@@ -45,4 +45,4 @@ const kakka = (xmlData) => {
 
 export const sodCosmic = () => {
   console.log(sodcosm)
-}
+}*/

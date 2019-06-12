@@ -11,17 +11,20 @@ import radiation from './constants/sk_radiation.json';
 
 function App() {
   const [ area, setArea ] = useState('Sodankylä')
-  const [ areaForecast, setAreaForecast ] = useState(null)
-  useEffect(() => {
+  const [ areaForecast, setAreaForecast ] = useState([])
+  const handleAreaChange = area => {
+    setArea(area)
     area !== '' && axios.get(`http://api.openweathermap.org/data/2.5/forecast?q=${area}&APPID=fa14e04085cbf0a2c81663f224b25e94`)
-      .then(results => {
-        console.log('jukra',results.data)
-        setAreaForecast(results.data)
-      })
+    .then(results => {
+      setAreaForecast(results.data)
+    })
+  }
+  useEffect(() => {
+    console.log(area)
   }, [area])
   return (
     <div className="App" style={{ display: 'flex' }}>
-      <MapTest height='100vh' width='75vw' pickArea={area => setArea(area)} forecast={areaForecast} />
+      <MapTest height='100vh' width='75vw' pickArea={area => handleAreaChange(area)} forecast={areaForecast} />
       <Sidebar
         data1={area === 'Sodankylä' ? weather_sk : weather_hk}
         data2={radiation}
