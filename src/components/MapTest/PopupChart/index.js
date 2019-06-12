@@ -53,14 +53,24 @@ export const chart2 = () => {
   )
 };
 
-export const chart3 = () => {
+export const popUpChart2 = forecast => {
+  const list = forecast.list ? forecast.list : []
+  const forecastData = list.map(entry => {
+    return {
+      name: entry.dt_txt,
+      humidity: entry.main.humidity,
+      pressure: entry.main.pressure,
+      temp: entry.main.temp - 273.15
+    }
+  })
+  
   return (
     <ComposedChart
-      width={400}
+      width={330}
       height={300}
-      data={data1}
+      data={forecastData}
       margin={{
-        top: 20, right: 20, bottom: 20, left: 20,
+        top: 5, right: 20, left: -50, bottom: 5,
       }}
     >
       <CartesianGrid stroke="#f5f5f5" />
@@ -68,20 +78,31 @@ export const chart3 = () => {
       <YAxis />
       <Tooltip />
       <Legend />
-      <Area type="monotone" dataKey="amt" fill="#8884d8" stroke="#8884d8" />
-      <Bar dataKey="pv" barSize={20} fill="#413ea0" />
-      <Line type="monotone" dataKey="uv" stroke="#ff7300" />
+      <Bar dataKey="humidity" barSize={20} fill="#413ea0" />
+      <Line type="monotone" dataKey="temp" stroke="#ff7300" />
       {/* <Scatter dataKey="cnt" fill="red" /> */}
     </ComposedChart>
   );
 }
 
-export const popUpChart = () => {
+export const popUpChart = forecast => {
+  
+  const list = forecast.list ? forecast.list : []
+  
+  const forecastData = list.map(entry => {
+    return {
+      name: entry.dt_txt,
+      humidity: entry.main.humidity,
+      pressure: entry.main.pressure,
+      temp: entry.main.temp
+    }
+  })
+
   return (
     <AreaChart
     width={300}
     height={200}
-    data={data3}
+    data={forecastData}
     margin={{
       top: 10, right: 30, left: 0, bottom: 0,
     }}
@@ -90,9 +111,9 @@ export const popUpChart = () => {
     <XAxis dataKey="name" />
     <YAxis />
     <Tooltip />
-    <Area type="monotone" dataKey="uv" stackId="1" stroke="#8884d8" fill="#8884d8" />
-    <Area type="monotone" dataKey="pv" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
-    <Area type="monotone" dataKey="amt" stackId="1" stroke="#ffc658" fill="#ffc658" />
+    <Area type="monotone" dataKey="humidity" stackId="1" stroke="#8884d8" fill="#8884d8" />
+    <Area type="monotone" dataKey="pressure" stackId="1" stroke="#82ca9d" fill="#82ca9d" />
+    <Area type="monotone" dataKey="temp" stackId="1" stroke="#ffc658" fill="#ffc658" />
   </AreaChart>
   )    
 }
