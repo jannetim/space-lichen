@@ -16,7 +16,7 @@ const Sidebar = ({
         setSlice([slice[0] + 30, slice[1] + 30])}
       }
     >
-      { chart3(data1.slice(...slice)) }
+    { chart3(data1.slice(...slice)) }
     </div>
   );
 };

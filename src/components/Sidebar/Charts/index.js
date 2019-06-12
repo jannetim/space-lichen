@@ -4,6 +4,7 @@ import {
   Line,
   XAxis,
   YAxis,
+  Cell,
   CartesianGrid,
   Tooltip,
   Legend,
@@ -15,6 +16,8 @@ import {
   ComposedChart,
   Area,
   Bar,
+  PieChart,
+  Pie,
 } from 'recharts';
 import { data1, data2 } from '../../../constants/data';
 
