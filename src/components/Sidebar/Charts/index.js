@@ -43,16 +43,48 @@ export const chart1 = (data) => {
   )
 };
 
-export const chart2 = (data) => {
+export const chart2 = (rawData) => {
+  let ozone = rawData.reduce((acc, val) => {
+    const newVal = val['Otsoni (ug/m3)'] || -1;
+    return acc + newVal;
+  }, 0);
+  let sulfur = rawData.reduce((acc, val) => {
+    const newVal = val['Rikkidioksidi (ug/m3)'] || -1;
+    return acc + newVal;
+  }, 0);
+  let nitrogen = rawData.reduce((acc, val) => {
+    const newVal = val['Rikkidioksidi (ug/m3)'] || -1;
+    return acc + newVal;
+  }, 0);
+
+  let data=[
+    { name: 'Ozone', value: Number(ozone.toFixed(2)) },
+    { name: 'Sulfur Oxide', value: Number(sulfur.toFixed(2)) },
+    { name: 'Nitrogen Oxide', value: Number(nitrogen.toFixed(2)) },
+  ];
+
+  const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   return (
-    <RadarChart cx={200} cy={200} outerRadius={100} width={400} height={500} data={data}>
-      <PolarGrid />
-      <PolarAngleAxis dataKey="subject" />
-      <PolarRadiusAxis angle={30} domain={[0, 60]} />
-      <Radar name="Lumensyvyys" dataKey="Lumensyvyys (cm)" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
-      <Radar name="Now" dataKey="B" stroke="#82ca9d" fill="#82ca9d" fillOpacity={0.6} />
+    <>
+    <PieChart width={400} height={400}>
       <Legend />
-    </RadarChart>
+      <Pie
+        data={data}
+        cx={200}
+        cy={200}
+        innerRadius={40}
+        outerRadius={80}
+        fill="#8884d8"
+        paddingAngle={5}
+        dataKey="value"
+        label
+      >
+        {
+          data.map((entry, index) => <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />)
+        }
+      </Pie>
+    </PieChart>
+    </>
   )
 };
 

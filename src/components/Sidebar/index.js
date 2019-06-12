@@ -17,6 +17,7 @@ const Sidebar = ({
       }
     >
     { chart3(data1.slice(...slice)) }
+    { chart2(data2.slice(...slice)) }
     </div>
   );
 };
