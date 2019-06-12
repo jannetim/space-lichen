@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { chart1, chart2, chart3 } from './Charts'
+import Button from '@material-ui/core/Button';
 
 const monthFilter = (data, month) => {
   return data.filter(x => {
@@ -15,8 +16,8 @@ const monthSetter = (month, dir) => {
       ? `${v-1}-12`
       : `${v}-${k-1}`)
     : (k == '12'
-      ? `${v+1}-1`
-      : `${v}-${k+1}`)
+      ? `${Number(v)+1}-1`
+      : `${v}-${Number(k)+1}`)
 }
 
 const Sidebar = ({
@@ -28,17 +29,29 @@ const Sidebar = ({
   area
 }) => {
   const [month, setMonth] = useState("2019-03");
-  console.log(month);
-  console.log(monthFilter(data2, month));
 
   return (
     <div
       style={{ height, width, padding: 20, boxSizing: 'border-box' }}
-      onClick={() => setMonth(monthSetter(month, 'back'))}
     >
-      <h1> { month } </h1>
-    { chart3(monthFilter(data1, month)) }
-    { chart2(monthFilter(data2, month)) }
+      { area }
+      <div style={{ display: 'flex', justifyContent: 'space-around' }}>
+        <Button
+          onClick={() => setMonth(monthSetter(month, 'back'))}
+          color="primary"
+        >
+          Back
+        </Button>
+        <h3> { month } </h3>
+        <Button
+          onClick={() => setMonth(monthSetter(month, 'next'))}
+          color="primary"
+        >
+          Next
+        </Button>
+      </div>
+      { chart3(monthFilter(data1, month)) }
+      { chart2(monthFilter(data2, month)) }
     </div>
   );
 };

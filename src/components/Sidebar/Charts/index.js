@@ -44,6 +44,7 @@ export const chart1 = (data) => {
 };
 
 export const chart2 = (rawData) => {
+  console.log(rawData);
   let ozone = rawData.reduce((acc, val) => {
     const newVal = val['Otsoni (ug/m3)'] || 0;
     return acc + newVal;
@@ -53,7 +54,7 @@ export const chart2 = (rawData) => {
     return acc + newVal;
   }, 0);
   let nitrogen = rawData.reduce((acc, val) => {
-    const newVal = val['Rikkidioksidi (ug/m3)'] || 0;
+    const newVal = val['Typpidioksidi (ug/m3)'] || 0;
     return acc + newVal;
   }, 0);
 
