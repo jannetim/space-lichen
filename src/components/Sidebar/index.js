@@ -1,4 +1,5 @@
 import React from 'react';
+import { chart1, chart2, chart3 } from './Charts'
 
 const Sidebar = ({
   height,
@@ -10,9 +11,9 @@ const Sidebar = ({
   console.log(data1);
   return (
     <div style={{ height, width, padding: 30, boxSizing: 'border-box' }}>
-      { data1() }
-      { data2() }
-      { data3() }
+      { chart1() }
+      { chart2() }
+      { chart3() }
     </div>
   );
 };

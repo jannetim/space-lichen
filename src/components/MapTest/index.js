@@ -1,7 +1,8 @@
 import React from 'react'
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet'
+import { chart1, chart2, chart3, popUpChart } from './PopupChart'
 
-const position = [51.505, -0.09]
+const position = [67.413, 26.5950]
 
 const TestMap = ({ height, width }) => {
   const onMapClick = (e) => console.log("latlng", e.latlng)
@@ -13,7 +14,9 @@ const TestMap = ({ height, width }) => {
           attribution="&copy; <a href=&quot;http://osm.org/copyright&quot;>OpenStreetMap</a> contributors"
         />
         <Marker position={position}>
-          <Popup>A pretty CSS3 popup.<br />Easily customizable.</Popup>
+          <Popup>Sodankylä<br />Dataa
+          {popUpChart()}
+          </Popup>
         </Marker>
       </Map>
     </div>
