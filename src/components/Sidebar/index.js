@@ -8,9 +8,8 @@ const Sidebar = ({
   data2,
   data3,
 }) => {
-  console.log(data1);
   return (
-    <div style={{ height, width, padding: 30, boxSizing: 'border-box' }}>
+    <div style={{ height, width, padding: 20, boxSizing: 'border-box' }}>
       { chart1() }
       { chart2() }
       { chart3() }

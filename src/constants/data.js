@@ -24,22 +24,22 @@ const data1 = [
 
 const data2 = [
   {
-    subject: 'Math', A: 120, B: 110, fullMark: 150,
+    subject: 'Pollution', A: 120, B: 110, fullMark: 150,
   },
   {
-    subject: 'Chinese', A: 98, B: 130, fullMark: 150,
+    subject: 'CO2', A: 98, B: 130, fullMark: 150,
   },
   {
-    subject: 'English', A: 86, B: 130, fullMark: 150,
+    subject: 'Amount of Usnea', A: 86, B: 130, fullMark: 150,
   },
   {
-    subject: 'Geography', A: 99, B: 100, fullMark: 150,
+    subject: 'Temperature', A: 99, B: 100, fullMark: 150,
   },
   {
-    subject: 'Physics', A: 85, B: 90, fullMark: 150,
+    subject: 'Population', A: 85, B: 90, fullMark: 150,
   },
   {
-    subject: 'History', A: 65, B: 85, fullMark: 150,
+    subject: 'Cosmic Rays', A: 65, B: 85, fullMark: 150,
   },
 ];
 
