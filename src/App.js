@@ -21,10 +21,6 @@ function App() {
       setAreaForecast(results.data)
     })
   }
-  useEffect(() => {
-    console.log(area)
-  }, [area])
-  console.log("phk", particles_hk);
   return (
     <div className="App" style={{ display: 'flex' }}>
       <MapTest height='100vh' width='75vw' pickArea={area => handleAreaChange(area)} forecast={areaForecast} />

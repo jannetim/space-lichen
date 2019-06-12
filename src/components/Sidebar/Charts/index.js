@@ -45,15 +45,15 @@ export const chart1 = (data) => {
 
 export const chart2 = (rawData) => {
   let ozone = rawData.reduce((acc, val) => {
-    const newVal = val['Otsoni (ug/m3)'] || -1;
+    const newVal = val['Otsoni (ug/m3)'] || 0;
     return acc + newVal;
   }, 0);
   let sulfur = rawData.reduce((acc, val) => {
-    const newVal = val['Rikkidioksidi (ug/m3)'] || -1;
+    const newVal = val['Rikkidioksidi (ug/m3)'] || 0;
     return acc + newVal;
   }, 0);
   let nitrogen = rawData.reduce((acc, val) => {
-    const newVal = val['Rikkidioksidi (ug/m3)'] || -1;
+    const newVal = val['Rikkidioksidi (ug/m3)'] || 0;
     return acc + newVal;
   }, 0);
 
@@ -66,12 +66,12 @@ export const chart2 = (rawData) => {
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   return (
     <>
-    <PieChart width={400} height={400}>
+    <PieChart width={400} height={250}>
       <Legend />
       <Pie
         data={data}
         cx={200}
-        cy={200}
+        cy={100}
         innerRadius={40}
         outerRadius={80}
         fill="#8884d8"
