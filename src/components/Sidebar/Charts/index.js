@@ -21,46 +21,52 @@ import {
 } from 'recharts';
 import { data1, data2 } from '../../../constants/data';
 
-export const chart1 = (data) => {
+const sum = (data, field) => data.reduce((acc, val) => {
+  const newVal = val[field] || 0;
+  return acc + newVal;
+}, 0);
+
+const average = (data, field) => Number((sum(data, field) / data.length).toFixed(2));
+
+export const chart1 = (rawData) => {
+  const data = [
+    {
+      subject: 'Longwave (atmosphere)', A: average(rawData, 'Ilmakehän pitkäaaltosäteily (W/m2)')
+    },
+    {
+      subject: 'GHI', A: average(rawData, 'Kokonaissäteily (W/m2)')
+    },
+    {
+      subject: 'Longwave (ground)', A: average(rawData, 'Maanpinnan pitkäaaltosäteily (W/m2)')
+    },
+    {
+      subject: 'DHI', A: average(rawData, 'Hajasäteily (W/m2)')
+    },
+  ];
   return (
-    <LineChart
-      width={400}
-      height={200}
-      data={data}
-      margin={{
-        top: 5, right: 30, left: 20, bottom: 5,
-      }}
-    >
-      <CartesianGrid strokeDasharray="3 3" />
-      <XAxis dataKey="name" />
-      <YAxis />
+    <>
+    <h4> Radiation (W/m2) </h4>
+    <RadarChart cx={220} cy={140} outerRadius={110} width={450} height={300} data={data}>
       <Tooltip />
-      <Legend />
-      <Line type="monotone" dataKey="Ylin lämpötila (degC)" stroke="#8884d8" activeDot={{ r: 8 }} />
-      <Line type="monotone" dataKey="Alin lämpötila (degC)" stroke="#82ca9d" />
-      <Line type="monotone" dataKey="Ilman lämpötila (degC)" stroke="#383838" />
-    </LineChart>
-  )
-};
+      <PolarGrid />
+      <PolarAngleAxis dataKey="subject" />
+      <PolarRadiusAxis />
+      <Radar name="Radiation (W/m2)" dataKey="A" stroke="#8884d8" fill="#8884d8" fillOpacity={0.6} />
+    </RadarChart>
+    </>
+  );
+}
 
 export const chart2 = (rawData) => {
-  let ozone = rawData.reduce((acc, val) => {
-    const newVal = val['Otsoni (ug/m3)'] || 0;
-    return acc + newVal;
-  }, 0);
-  let sulfur = rawData.reduce((acc, val) => {
-    const newVal = val['Rikkidioksidi (ug/m3)'] || 0;
-    return acc + newVal;
-  }, 0);
-  let nitrogen = rawData.reduce((acc, val) => {
-    const newVal = val['Typpidioksidi (ug/m3)'] || 0;
-    return acc + newVal;
-  }, 0);
+  let ozone = average(rawData, 'Otsoni (ug/m3)');
+  let sulfur = average(rawData, 'Rikkidioksidi (ug/m3)');
+  let nitrogen = average(rawData, 'Typpidioksidi (ug/m3)');
 
-  let data=[
-    { name: 'Ozone', value: Number((ozone / rawData.length).toFixed(2)) },
-    { name: 'Sulfur Oxide', value: Number((sulfur / rawData.length).toFixed(2)) },
-    { name: 'Nitrogen Oxide', value: Number((nitrogen / rawData.length).toFixed(2)) },
+  console.log(ozone, sulfur, nitrogen);
+  let data= [
+    { name: 'Ozone', value: ozone },
+    { name: 'Sulfur Oxide', value: sulfur },
+    { name: 'Nitrogen Oxide', value: nitrogen },
   ];
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
@@ -68,6 +74,7 @@ export const chart2 = (rawData) => {
     <>
     <h4> Air quality indicators (monthly avg. (ug/m3)) </h4>
     <PieChart width={400} height={250}>
+      <Tooltip />
       <Legend />
       <Pie
         data={data}

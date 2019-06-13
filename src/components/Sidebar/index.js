@@ -52,6 +52,7 @@ const Sidebar = ({
       </div>
       { chart3(monthFilter(data1, month)) }
       { chart2(monthFilter(data2, month)) }
+      { chart1(monthFilter(data3, month)) }
     </div>
   );
 };

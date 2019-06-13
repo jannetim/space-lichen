@@ -9,7 +9,8 @@ import weather_sk from './constants/sk_weather.json';
 import weather_hk from './constants/hk_weather.json';
 import particles_hk from './constants/hk_particles.json';
 import particles_sk from './constants/sk_particles.json';
-import radiation from './constants/sk_radiation.json';
+import radiation_sk from './constants/sk_radiation.json';
+import radiation_hk from './constants/hk_radiation.json';
 
 function App() {
   const [ area, setArea ] = useState('Sodankylä')
@@ -27,6 +28,7 @@ function App() {
       <Sidebar
         data1={area === 'Sodankylä' ? weather_sk : weather_hk}
         data2={area === 'Sodankylä' ? particles_sk : particles_hk}
+        data3={area === 'Sodankylä' ? radiation_sk : radiation_hk}
         height='100vh'
         width='25vw'
         area={area}
