@@ -44,7 +44,6 @@ export const chart1 = (data) => {
 };
 
 export const chart2 = (rawData) => {
-  console.log(rawData);
   let ozone = rawData.reduce((acc, val) => {
     const newVal = val['Otsoni (ug/m3)'] || 0;
     return acc + newVal;
@@ -59,14 +58,15 @@ export const chart2 = (rawData) => {
   }, 0);
 
   let data=[
-    { name: 'Ozone', value: Number(ozone.toFixed(2)) },
-    { name: 'Sulfur Oxide', value: Number(sulfur.toFixed(2)) },
-    { name: 'Nitrogen Oxide', value: Number(nitrogen.toFixed(2)) },
+    { name: 'Ozone', value: Number((ozone / rawData.length).toFixed(2)) },
+    { name: 'Sulfur Oxide', value: Number((sulfur / rawData.length).toFixed(2)) },
+    { name: 'Nitrogen Oxide', value: Number((nitrogen / rawData.length).toFixed(2)) },
   ];
 
   const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
   return (
     <>
+    <h4> Air quality indicators (monthly avg. (ug/m3)) </h4>
     <PieChart width={400} height={250}>
       <Legend />
       <Pie
@@ -74,7 +74,7 @@ export const chart2 = (rawData) => {
         cx={200}
         cy={100}
         innerRadius={40}
-        outerRadius={80}
+        outerRadius={70}
         fill="#8884d8"
         paddingAngle={5}
         dataKey="value"

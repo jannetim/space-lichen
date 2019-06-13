@@ -23,7 +23,7 @@ function App() {
   }
   return (
     <div className="App" style={{ display: 'flex' }}>
-      <MapTest height='100vh' width='75vw' pickArea={area => handleAreaChange(area)} forecast={areaForecast} />
+      <MapTest height='100vh' width='75vw' pickArea={area => handleAreaChange(area)} forecast={areaForecast} area={area} />
       <Sidebar
         data1={area === 'Sodankylä' ? weather_sk : weather_hk}
         data2={area === 'Sodankylä' ? particles_sk : particles_hk}
