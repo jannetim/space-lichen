@@ -15,7 +15,6 @@ const TestMap = ({ height, width, pickArea, forecast, area }) => {
         key={'BestJSON'}
         data={data}
         onClick={({ layer }) => {
-          console.log(layer);
           if (!layer.feature) return; // data is bad, some have no features
           pickArea(layer.feature.properties.name)}
         }
